@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "index.html",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -27,5 +28,15 @@
     "tailwindcss": "^3.3.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mehulpatelspce/smarter-tasks.git"
+  },
+  "author": "Mehul Patel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mehulpatelspce/smarter-tasks/issues"
+  },
+  "homepage": "https://github.com/mehulpatelspce/smarter-tasks#readme"
 }
