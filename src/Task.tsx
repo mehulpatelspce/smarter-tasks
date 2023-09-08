@@ -17,7 +17,6 @@ const Task = (props: TaskProp) => {
       <p className="text-sm text-slate-500">
         Description: {item.description}
       </p>
-
       <button id="deleteTaskButton"
         type="submit"
         className="deleteTaskButton bg-slate-600 "
