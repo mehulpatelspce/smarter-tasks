@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { TaskItem } from "./types";
 // import { render } from "react-dom";
 interface TaskFormProps {
@@ -18,9 +18,9 @@ const TaskForm = (props: TaskFormProps) => {
     dueDate: "",
   });
 
-  const [title, setTitle] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [sueDate, setDueDate] = React.useState("");
+  // const [title, setTitle] = React.useState("");
+  // const [description, setDescription] = React.useState("");
+  // const [sueDate, setDueDate] = React.useState("");
 
   const titleChanged: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     // console.log(`${event.target.value}`);
