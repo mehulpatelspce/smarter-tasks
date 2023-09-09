@@ -1,4 +1,3 @@
- import React from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import {
@@ -6,7 +5,6 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-
 import Layout from './Layout';
 import ProtectedRoute from './ProtectedRoute';
 import HomePage from './pages/HomePage';
@@ -24,7 +22,6 @@ const router = createBrowserRouter([
       {
         path: "/signin",
         element: <Signin />,
-        errorElement: <Notfound />,
       },
       {
         element: (
@@ -36,17 +33,14 @@ const router = createBrowserRouter([
           {
             path: "/home",
             element: <HomePage />,
-            errorElement: <Notfound />,
           },
           {
             path: "/tasks",
             element: <TaskListPage />,
-            errorElement: <Notfound />,
           },
           {
             path: "/tasks/:id",
             element: <TaskDetailsPage />,
-            errorElement: <Notfound />,
           },
         ],
       }
