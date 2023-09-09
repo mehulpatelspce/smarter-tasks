@@ -34,15 +34,15 @@ const router = createBrowserRouter([
         ),
         children: [
           {
-            path: "home",
+            path: "/home",
             element: <HomePage />,
           },
           {
-            path: "tasks",
+            path: "/tasks",
             element: <TaskListPage />,
           },
           {
-            path: "tasks/:id",
+            path: "/tasks/:id",
             element: <TaskDetailsPage />,
           },
         ],
