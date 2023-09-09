@@ -17,41 +17,33 @@ import {
 } from "react-router-dom";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Navigate to="/signin" replace />,
-    errorElement: <Notfound />,
-  },
-  {
-    path: "/signin",
-    element: <Signin />,
-  },
-  {
-    path: "/notfound",
-    element: <Notfound />,
-  },
-  {
-    element: (
-      <ProtectedRoute>
-        <Layout />
-      </ProtectedRoute>
-    ),
-    children: [
-      {
-        path: "/home",
-        element: (<HomePage />)
-      },
-      {
-        path: "tasks",
-        element: (<TaskListPage />)
-      },
-      {
-        path: "tasks/:id",
-        element: (<TaskDetailsPage />)
-      },
-    ]
-  },
- 
+    {
+      path: "/",
+      element: <Navigate to="/signin" replace />,
+      errorElement: <Notfound />,
+    },
+    {
+      path: "/signin",
+      element: <Signin />,
+    },
+    {
+      element: <Layout />,
+      children: [
+        {
+          path: "home",
+          element: <HomePage />,
+        },
+        {
+          path: "tasks",
+          element: <TaskListPage />,
+        },
+        {
+          path: "tasks/:id",
+          element: <TaskDetailsPage />,
+        },
+      ],
+    },
+  
 ]);
 
 function App() {
