@@ -19,7 +19,7 @@ import {
 const router = createBrowserRouter([
       {
         path: "/",
-        element: <Navigate to="/signin" replace />,
+        element: <Navigate to="/signin" />,
         errorElement: <Notfound />,
       },
       {
