@@ -1,10 +1,6 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from "react-router-dom";
+import './App.css'
 import Layout from './Layout';
 import ProtectedRoute from './ProtectedRoute';
 import HomePage from './pages/HomePage';
