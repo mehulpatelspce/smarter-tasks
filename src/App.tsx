@@ -5,7 +5,7 @@ import './App.css'
 import Layout from './Layout';
 import ProtectedRoute from './ProtectedRoute';
 import HomePage from './pages/HomePage';
-import Notfound from './Notfound';
+import Notfound from './pages/Notfound';
 import Signin from './pages/Signin';
 import TaskDetailsPage from './pages/TaskDetailsPage';
 import TaskListPage from './pages/TaskListPage';
