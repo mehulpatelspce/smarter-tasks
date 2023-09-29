@@ -2,56 +2,64 @@
 // import viteLogo from '/vite.svg'
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css'
-import Layout from './Layout';
 import ProtectedRoute from './ProtectedRoute';
-import HomePage from './pages/HomePage';
 import Notfound from './pages/Notfound';
-import Signin from './pages/Signin';
-import TaskDetailsPage from './pages/TaskDetailsPage';
-import TaskListPage from './pages/TaskListPage';
+import Signup from './pages/signup';
+import Dashboard from "./pages/dashboard";
+import Signin from './pages/signin';
+import Signout from './pages/signout';
+
 
 const router = createBrowserRouter([
-      {
-        path: "/",
-        element: <Navigate to="/signin" />,
-        errorElement: <Navigate to="/notfound" />,
-      },
-      {
-        path: "/notfound",
-        element: <Notfound />,
-      },
+  {
+    path: "/",
+    element: <Signup />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/signin", // then we've added the signin route
+    element: <Signin />,
+  },
+  {
+    path: "/notfound",
+    element: <Notfound />,
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
       
-      {
-        path: "/signin",
-        element: <Signin />,
-      },
-      {
-        element: (
-          <ProtectedRoute>
-            <Layout />
-          </ProtectedRoute>
-        ),
-        children: [
-          {
-            path: "/home",
-            element: <HomePage />,
-          },
-          {
-            path: "/tasks",
-            element: <TaskListPage />,
-          },
-          {
-            path: "/tasks/:id",
-            element: <TaskDetailsPage />,
-          },
-        ],
-      }
+    errorElement: <Navigate to="/signin" />
+  },
+  {
+    path: "/signout",
+    element: <Signout />,
+  },
+  {
+    path: "*",
+    element: <Notfound />,
+    errorElement: <Navigate to="/signin" />
+  },  
   
+
 ]);
 
 function App() {
   return (
-    <RouterProvider router={router} />
+
+    <>
+
+      {/* <Form />
+
+      <ReactPlayground /> */}
+      <RouterProvider router={router} />
+    </>
   );
 }
 
