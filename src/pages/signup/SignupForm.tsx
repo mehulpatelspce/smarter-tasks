@@ -1,8 +1,10 @@
 // src/pages/signup/SignupForm.tsx
 import React, { useState } from 'react';
 import { API_ENDPOINT } from '../../config/constants';
+import { useNavigate } from 'react-router-dom';
 
 const SignupForm: React.FC = () => {
+    const navigate = useNavigate();
     const [organisationName, setOrganisationName] = useState('');
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
@@ -17,7 +19,7 @@ const SignupForm: React.FC = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name: organisationName, user_name: userName, email: userEmail, password: userPassword }),
             });
-            
+
             if (!response.ok) {
                 throw new Error('Sign-up failed');
             }
@@ -30,6 +32,8 @@ const SignupForm: React.FC = () => {
             localStorage.setItem('authToken', data.token);
             // if successful, save the user info in localStorage
             localStorage.setItem('userData', JSON.stringify(data.user))
+
+            navigate("/dashboard");
 
         } catch (error) {
             console.error('Sign-up failed:', error);
