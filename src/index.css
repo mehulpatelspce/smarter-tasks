@@ -72,3 +72,7 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.dark {
+  @apply bg-slate-800 text-zinc-50;
+}

@@ -33,7 +33,8 @@ const SignupForm: React.FC = () => {
             // if successful, save the user info in localStorage
             localStorage.setItem('userData', JSON.stringify(data.user))
 
-            navigate("/dashboard");
+            // navigate("/dashboard");
+            navigate("/account")
 
         } catch (error) {
             console.error('Sign-up failed:', error);
@@ -60,7 +61,7 @@ const SignupForm: React.FC = () => {
             </div>
             <button type="submit" className="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4">Sign up</button>
         </form>
-
+        
     );
 }
 export default SignupForm;
