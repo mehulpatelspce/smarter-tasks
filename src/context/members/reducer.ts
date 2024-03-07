@@ -2,6 +2,7 @@ interface Member {
     id: number;
     name: string;
     email: string;
+    
 }
 export interface MembersState {
     members: Member[];

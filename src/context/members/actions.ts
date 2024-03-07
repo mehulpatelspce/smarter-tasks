@@ -1,5 +1,6 @@
 import { API_ENDPOINT } from '../../config/constants';
 // import { initialState, reducer_members } from './reducer';
+import { MembersProvider } from "./context";
 
 export const fetchMembers = async (members_dispatch: any) => {
   const token = localStorage.getItem("authToken") ?? "";

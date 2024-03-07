@@ -27,9 +27,10 @@ export default function MemberListItems() {
     <>
       {members.map((member: any) => (
         <div key={member.id}
-          className="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          className="member block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 
+          dark:hover:bg-gray-700">
           <h5 className="mb-2 text-xl font-medium tracking-tight text-gray-900 dark:text-white">
-            {member.name}
+            {member.name}<br/>
             {member.email}
           </h5>
         </div>
