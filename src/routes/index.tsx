@@ -1,4 +1,4 @@
-import { Navigate, createBrowserRouter } from "react-router-dom";
+import {Navigate, createBrowserRouter } from "react-router-dom";
 
 import Signin from "../pages/signin"
 import Signup from "../pages/signup"
@@ -7,6 +7,7 @@ import ProtectedRoute from "../ProtectedRoute"
 import Projects from "../pages/projects";
 import Members from "../pages/members";
 import Logout from "../pages/logout";
+import NotFound from "../pages/Notfound";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
         path: "/logout",
         element: <Logout />
     },
+    {
+        path: "/notfound",
+        element: <NotFound />
+    },
+
     // Protected Routes
     {
         path: "account",
