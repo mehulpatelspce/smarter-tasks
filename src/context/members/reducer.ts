@@ -3,9 +3,7 @@ import { MembersActions } from "../../types";
 export interface Member {
     id: number;
     name: string;
-    email: string;
-    password: string;
-    
+    email: string;    
 }
 export interface MembersState {
     members: Member[];
