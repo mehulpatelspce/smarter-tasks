@@ -21,6 +21,7 @@ const NewMember = () => {
         setIsOpen(true)
     }
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        console.log("Member data:", data)
         const { name, email, password } = data
         const response = await addMember(dispatchMembers, { name, email, password })
 
@@ -69,7 +70,6 @@ const NewMember = () => {
                                     </Dialog.Title>
                                     <div className="mt-2">
                                         <form onSubmit={handleSubmit(onSubmit)}>
-                                            
                                             {error &&
                                                 <span>{error}</span>
                                             }
@@ -100,10 +100,10 @@ const NewMember = () => {
                                                     }`}
                                             />
                                             { errors.password  && <span>This field is required</span>}
-                                            <button type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 mr-2 text-sm font-medium text-white hover:bg-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+                                            <button id="create-member-btn" type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 mr-2 text-sm font-medium text-white hover:bg-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
                                                 Submit
                                             </button>
-                                            <button id="create-member-btn" type="submit" onClick={closeModal} className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+                                            <button type="submit" onClick={closeModal} className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
                                                 Cancel
                                             </button>
                                         </form>

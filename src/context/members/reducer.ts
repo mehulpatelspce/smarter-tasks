@@ -2,6 +2,7 @@ interface Member {
     id: number;
     name: string;
     email: string;
+    password: string;
     
 }
 export interface MembersState {
@@ -25,10 +26,10 @@ export const initialState: MembersState = {
     errorMessage: ''
 };
 
-export const reducer_members = (members_state: MembersState = initialState,
+export const members_reducer = (members_state: MembersState = initialState,
     action: MembersActions): MembersState => {
-    console.log("State 1:" + members_state.isLoading);
-    switch (action.type) {
+        
+        switch (action.type) {
         case "FETCH_MEMBERS_REQUEST":
             return {
                 ...members_state,
@@ -48,10 +49,16 @@ export const reducer_members = (members_state: MembersState = initialState,
                 errorMessage: action.payload
             };
         case 'ADD_MEMBER_SUCCESS':
-            return { ...members_state, members: [...members_state.members, action.payload] };
+            console.log("Add Member = ", action.payload)
+            return { 
+                ...members_state, 
+                members: [...members_state.members, 
+                    action.payload] };
 
         case 'DELETE_MEMBER_SUCCESS':
-            return { ...members_state, members: members_state.members.filter(memeber => memeber.id !== action.payload) };
+            return { ...members_state, 
+                members: members_state.members.filter(memeber => memeber.id !== action.payload) 
+            };
 
         default:
             return members_state;

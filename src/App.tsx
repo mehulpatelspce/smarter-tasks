@@ -16,9 +16,6 @@ const App = () => {
           <RouterProvider router={router} />
         </MembersProvider>
       </ProjectsProvider>
-
-
-
     </div>
   );
 }
