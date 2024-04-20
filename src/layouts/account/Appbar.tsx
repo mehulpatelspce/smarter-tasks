@@ -36,7 +36,7 @@ const Appbar = () => {
   return (
     <>
       <Disclosure as="nav" className="border-b border-slate-200">
-        {({ open }) => (
+        {/* {({ open }) => ( */}
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
 
@@ -136,7 +136,7 @@ const Appbar = () => {
             </div>
 
           </div>
-        )}
+        {/* )} */}
       </Disclosure>
     </>
   )
