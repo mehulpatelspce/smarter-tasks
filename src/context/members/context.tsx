@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { members_reducer, initialState, MembersState, MembersActions } from "./reducer";
+import { members_reducer, initialState, MembersState } from "./reducer";
+import { MembersActions } from "../../types";
 
 type MemberDispatch = React.Dispatch<MembersActions>;
 

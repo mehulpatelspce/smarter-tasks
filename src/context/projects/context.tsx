@@ -1,5 +1,7 @@
+import { ProjectsActions } from "../../types";
+
 import React, { createContext, useContext, useReducer } from "react";
-import { reducer_projects, initialState, ProjectsState, ProjectsActions } from "./reducer";
+import { reducer_projects, initialState, ProjectsState } from "./reducer";
 
 type ProjectsDispatch = React.Dispatch<ProjectsActions>;
 
