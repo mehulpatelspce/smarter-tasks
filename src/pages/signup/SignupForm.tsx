@@ -48,7 +48,7 @@ const SignupForm: React.FC = () => {
                 <input type="text" name="organisationName" id="organisationName" value={organisationName} onChange={(e) => setOrganisationName(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
             </div>
             <div>
-                <label className="block text-gray-700 font-semibold mb-2">Your Name:</label>
+                <label className="block text-gray-700 font-semibold mb-2">User Name:</label>
                 <input type="text" name="userName" id="userName" value={userName} onChange={(e) => setUserName(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
             </div>
             <div>
