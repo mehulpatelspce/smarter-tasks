@@ -7,7 +7,7 @@ import { addComment } from "../../context/comment/actions";
 import { CommentDetailsPayload } from "../../context/comment/types";
 
 const NewComment = () => {
-  let [isOpen, setIsOpen] = useState(true);
+  let [isOpenNewComment, setIsOpenNewComment] = useState(true);
 
   let {projectID,  taskID } = useParams();
   let navigate = useNavigate();
@@ -19,8 +19,8 @@ const NewComment = () => {
     formState: {  },
   } = useForm<CommentDetailsPayload>();
 
-  function closeModal() {
-    setIsOpen(false);
+  function closeModalNewComment() {
+    setIsOpenNewComment(false);
     navigate("../../");
   }
 
@@ -39,15 +39,15 @@ const NewComment = () => {
       // Invoke the actual API and create a task.
       addComment(commentDispatch, projectID ?? "", taskID ?? "", data);
       console.log("Added Comments:", comments);
-      closeModal();
+      closeModalNewComment();
     } catch (error) {
       console.error("Operation failed:", error);
     }
   };
   return (
     <>
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+      <Transition appear show={isOpenNewComment} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModalNewComment}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -99,7 +99,7 @@ const NewComment = () => {
                         Submit
                       </button>
                       <button
-                        onClick={closeModal}
+                        onClick={closeModalNewComment}
                         className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       >
                         Cancel

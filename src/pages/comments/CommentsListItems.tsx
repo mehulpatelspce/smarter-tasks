@@ -1,13 +1,22 @@
 import { useParams } from "react-router-dom";
-import { useCommentsState } from "../../context/comment/context";
-import NewComment from "./NewComment";
+import { useCommentsDispatch, useCommentsState } from "../../context/comment/context";
+
+import { useEffect } from "react";
+import { fetchComments } from "../../context/comment/actions";
 
 export default function CommentListItems() {
+    const commentDispatch = useCommentsDispatch();
 
     let { projectID, taskID } = useParams();
-    console.log("Project ID:", projectID)
-    console.log("Task Id:", taskID)
+    console.log("Project ID:--", projectID)
+    console.log("Task Id:--", taskID)
     
+
+    useEffect(() => {
+        console.log("Fetch Comments ->");
+        fetchComments(commentDispatch, projectID ?? "", taskID ?? "");
+    }, [projectID, taskID, commentDispatch])
+
     let state: any = useCommentsState();
     const { comments, isLoading, isError, errorMessage } = state
     console.log(comments);
@@ -29,6 +38,10 @@ export default function CommentListItems() {
         (task: any) => `${task.task_id}` === taskID);
 
     console.log("Commets:", selectedTaskComments)
+
+    if (selectedTaskComments.length === 0) {
+        return <p className='mt-5 font-bold text-blue-700'>Add first comment</p>;
+    }
 
     return (
         <>

@@ -14,7 +14,7 @@ const Task = forwardRef<
     const taskDispatch = useTasksDispatch();
     const { projectID } = useParams();
     const { task } = props;
-    return (
+    return (<div>
         <div ref={ref} {...props} className="m-2">
 
             <Link
@@ -58,19 +58,15 @@ const Task = forwardRef<
                     </svg>
                 </button>
             </Link>
-            <br />Comments: 
+            </div>
+            <div ref={ref} {...props} className="m-2">
+             
+            <Link to={`tasks/${task.id}/comments`}
+            >View Comments</Link><br/> 
             <Link
-                className="TaskItem w-full shadow-md border border-slate-100 bg-white"
-                to={`tasks/${task.id}/comments`}
-            >
-                View
-            </Link>
-            <Link
-                className="TaskItem w-full shadow-md border border-slate-100 bg-white"
                 to={`tasks/${task.id}/comments/new`}
-            >
-                Add
-                </Link>
+            >Add Comment</Link>
+        </div>
         </div>
     );
 });

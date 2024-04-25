@@ -8,7 +8,7 @@ import { useProjectsState } from "../../context/projects/context";
 import { TaskDetailsPayload } from "../../context/task/types";
 import CheckIcon from "@heroicons/react/24/outline/CheckIcon";
 import { useMembersState } from "../../context/members/context";
-import Comments from "../comments/CommentDetails";
+
 
 
 type TaskFormUpdatePayload = TaskDetailsPayload & {
@@ -55,7 +55,7 @@ const TaskDetails = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: {  },
     } = useForm<TaskFormUpdatePayload>({
         defaultValues: {
             title: selectedTask.title,
