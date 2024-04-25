@@ -12,8 +12,9 @@ import ProjectContainer from "../pages/projects/ProjectContainer";
 import ProjectDetails from "../pages/project_details";
 import NewTask from "../pages/tasks/NewTask";
 import TaskDetailsContainer from "../pages/tasks/TaskDetailsContainer";
+import NewComment from "../pages/comments/NewComment";
+import CommentContainer from "../pages/comments/CommentContainer";
 import CommentList from "../pages/comments/CommentList";
-
 
 const router = createBrowserRouter([
     {
@@ -78,10 +79,11 @@ const router = createBrowserRouter([
                                                 children: [
                                                     { index: true, 
                                                         element: <CommentList/>, 
+                                                        
                                                     },
                                                     { 
                                                         path: "new", 
-                                                        element: <>Show Modal window to create a comment</>,
+                                                        element: <NewComment/>,
                                                     },
                                                 ],
                                             }

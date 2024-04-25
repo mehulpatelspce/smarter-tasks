@@ -23,5 +23,3 @@ export const ProjectsProvider: React.FC<React.PropsWithChildren> = ({ children }
 export const useProjectsState = () => useContext(ProjectsStateContext);
 export const useProjectsDispatch = () => useContext(ProjectsDispatchContext);
 
-console.log("useProjectsState in context -> " + useProjectsState);
-console.log("useProjectsDispatch in context -> " + useProjectsDispatch);

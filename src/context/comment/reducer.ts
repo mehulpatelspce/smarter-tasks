@@ -1,4 +1,12 @@
-import { CommentsState, CommentsActions } from "./types"
+import {  CommentDetails, CommentListAvailableAction, CommentsActions } from "./types"
+
+
+export interface CommentsState {
+  comments: CommentDetails [];
+  isLoading: boolean;
+  isError: boolean;
+  errorMessage: string;
+}
 
 export const initialState: CommentsState = {
     comments: [],
@@ -7,34 +15,38 @@ export const initialState: CommentsState = {
     errorMessage: ''
   };
 
-  export const reducer = (state: CommentsState = initialState, action: CommentsActions): CommentsState => {
+  export const comment_reducer = (state: CommentsState = initialState, action: CommentsActions): CommentsState => {
+    console.log("state:", state);
+    console.log("Action:", action);
+    
     switch (action.type) {
-      case "FETCH_TASKS_COMMENTS_REQUEST":
+      case CommentListAvailableAction.FETCH_TASKS_COMMENTS_REQUEST:
         return {
           ...state,
           isLoading: true
         };
-      case "FETCH_TASKS_COMMENTS_SUCCESS":
+      case CommentListAvailableAction.FETCH_TASKS_COMMENTS_SUCCESS:
+        console.log("payload:", action.payload)
         return {
           ...state,
           isLoading: false,
           comments: action.payload,
         };
-      case "FETCH_TASKS_COMMENTS_FAILURE":
+      case CommentListAvailableAction.FETCH_TASKS_COMMENTS_FAILURE:
         return {
           ...state,
           isLoading: false,
           isError: true,
           errorMessage: action.payload
         };
-      case "ADD_COMMENT_REQUEST":
+      case CommentListAvailableAction.ADD_COMMENT_REQUEST:
         return {
           ...state,
           isLoading: true
         };
-      case 'ADD_COMMENT_SUCCESS':
-        return { ...state,isLoading:false };
-      case "ADD_COMMENT_FAILURE":
+      case CommentListAvailableAction.ADD_COMMENT_SUCCESS:
+        return { ...state,isLoading:false  , comments: [...state.comments, action.payload] };
+      case CommentListAvailableAction.ADD_COMMENT_FAILURE:
         return {
           ...state,
           isLoading: false,

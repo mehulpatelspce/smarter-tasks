@@ -20,6 +20,7 @@ export const fetchProjects = async (dispatch_project: any) => {
 
 export const addProject = async (dispatch: any, args: any) => {
   try {
+    console.log("Project Add data:", args);
     const token = localStorage.getItem("authToken") ?? "";
     const response = await fetch(`${API_ENDPOINT}/projects`, {
       method: 'POST',

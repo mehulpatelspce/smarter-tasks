@@ -14,7 +14,7 @@ export default function CommentDetails() {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: { },
     } = useForm<CommentDataPayload>({
     });
 

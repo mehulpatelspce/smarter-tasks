@@ -2,47 +2,43 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useProjectsState } from "../../context/projects/context";
-import { useTasksDispatch, useTasksState } from "../../context/task/context";
-import { addTask } from "../../context/task/actions";
-import { TaskDetailsPayload } from "../../context/task/types";
-import { CommentDetailsPayload } from "../../context/comment/types";
-import { useCommentsDispatch } from "../../context/comment/context";
+import { useCommentsDispatch, useCommentsState } from "../../context/comment/context";
 import { addComment } from "../../context/comment/actions";
+import { CommentDetailsPayload } from "../../context/comment/types";
 
 const NewComment = () => {
   let [isOpen, setIsOpen] = useState(true);
 
-  let { tasktID } = useParams();
+  let {projectID,  taskID } = useParams();
   let navigate = useNavigate();
-
+  let userID = JSON.parse(localStorage.getItem("userData")?? "").id;
   // Use react-hook-form to create form submission handler and state.
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: {  },
   } = useForm<CommentDetailsPayload>();
 
-  const taskState = useTasksState();
-  const commentDispatch = useCommentsDispatch();
-  
-
-  // We do some sanity checks to make sure the `projectID` passed is a valid one
-//   const selectedProject = taskState?.tasks.filter(
-//     (task) => `${task.id}` === taskID
-//   )?.[0];
-  // if (!selectedProject) {
-  //   return <>No such Project!</>;
-  // }
   function closeModal() {
     setIsOpen(false);
     navigate("../../");
   }
+
+  const commentDispatch = useCommentsDispatch();
+  console.log("Comment Dispatch0:", commentDispatch);
+  const comments = useCommentsState();
+  console.log("Comments:", comments);
+
   
   const onSubmit: SubmitHandler<CommentDetailsPayload> = async (data) => {
+    
+    data['owner'] = userID;
+    // data['task_id'] = taskID
+    console.log("Data Load:", data)
     try {
       // Invoke the actual API and create a task.
-    //   addComment(commentDispatch, taskID ?? "", data);
+      addComment(commentDispatch, projectID ?? "", taskID ?? "", data);
+      console.log("Added Comments:", comments);
       closeModal();
     } catch (error) {
       console.error("Operation failed:", error);

@@ -1,9 +1,9 @@
 import { API_ENDPOINT } from '../../config/constants';
-import { CommentsDispatch, CommentListAvailableAction } from "./types"
+import { CommentListAvailableAction } from "./types"
 
 
 export const fetchComments = async (
-    dispatch: CommentsDispatch,
+    dispatch: any,
     projectID: string,
     taskID: string,
 ) => {
@@ -26,10 +26,12 @@ export const fetchComments = async (
         }
 
         const data = await response.json();
+        console.log("Comments fetch payload:", data);
         dispatch({
             type: CommentListAvailableAction.FETCH_TASKS_COMMENTS_SUCCESS,
-            payload: data,
+            payload: data
         });
+
     } catch (error) {
         console.error("Operation failed:", error);
         dispatch({
@@ -39,17 +41,14 @@ export const fetchComments = async (
     }
 };
 
-export const addComment = async (
-    dispatch: CommentsDispatch,
-    projectID: string,
-    taskID: string,
-    arg: any
+export const addComment = async (dispatch: any, projectID: string, taskID: string, arg: any
 ) => {
     const token = localStorage.getItem("authToken") ?? "";
     try {
 
         dispatch({ type: CommentListAvailableAction.ADD_COMMENT_REQUEST });
-
+        // arg['owner'] = userID
+        console.log("Arg:", arg);
         const response = await fetch(
             `${API_ENDPOINT}/projects/${projectID}/tasks/${taskID}/comments`,
             {
@@ -61,12 +60,15 @@ export const addComment = async (
                 body: JSON.stringify(arg),
             }
         );
+        const data = await response.json();
+        console.log("Add comment Response:", data);
 
         if (!response.ok) {
             throw new Error("Error: Failed to create comment");
         }
 
-        dispatch({ type: CommentListAvailableAction.ADD_COMMENT_SUCCESS, });
+        dispatch({ type: CommentListAvailableAction.ADD_COMMENT_SUCCESS, payload: data});
+        
         fetchComments(dispatch, projectID, taskID);
     } catch (error) {
         console.error("Error: Filed to create comment:", error);

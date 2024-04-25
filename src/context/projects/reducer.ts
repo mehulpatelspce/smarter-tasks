@@ -25,6 +25,7 @@ export const initialState: ProjectsState = {
     errorMessage: ''
 };
 export const reducer_projects = (state: ProjectsState = initialState, action: ProjectsActions): ProjectsState => {
+    console.log(action.type);
     switch (action.type) {
         case "FETCH_PROJECTS_REQUEST":
             console.log("Fetch Data 2:")
@@ -46,6 +47,7 @@ export const reducer_projects = (state: ProjectsState = initialState, action: Pr
                 errorMessage: action.payload
             };
         case 'ADD_PROJECT_SUCCESS':
+            console.log("Project payload:", action.payload);
             return { ...state, projects: [...state.projects, action.payload] };
         default:
             return state;

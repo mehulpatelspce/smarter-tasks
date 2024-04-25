@@ -1,14 +1,18 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { CommentsDispatch, CommentsState } from "./types"
-import { reducer, initialState } from "./reducer";
+import { CommentsActions } from "./types"
+import { initialState, CommentsState, comment_reducer } from "./reducer";
 
-const CommentsStateContext = createContext<CommentsState>(initialState);
+type CommentsDispatch = React.Dispatch<CommentsActions>;
 
-const CommentsDispatchContext = createContext<CommentsDispatch>(() => {});
+const CommentsStateContext = createContext<CommentsState | undefined>(undefined);
+const CommentsDispatchContext = createContext<CommentsDispatch | undefined>(undefined);
+// const CommentsStateContext = createContext<CommentsState>(initialState);
+// const CommentsDispatchContext = createContext<CommentsDispatch>(() => {});
 
 export const CommentsProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
     {
-      const [state, dispatch] = useReducer(reducer, initialState);
+      const [state, dispatch] = useReducer(comment_reducer, initialState);
+      console.log("Comment Dispatch2:", dispatch);
       return (
         <CommentsStateContext.Provider value={state}>
           <CommentsDispatchContext.Provider value={dispatch}>
@@ -19,5 +23,5 @@ export const CommentsProvider: React.FC<React.PropsWithChildren> = ({ children }
     };
     
     export const useCommentsState = () => useContext(CommentsStateContext);
-    
     export const useCommentsDispatch = () => useContext(CommentsDispatchContext);
+    

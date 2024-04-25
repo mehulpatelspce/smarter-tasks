@@ -5,6 +5,7 @@ import router from "./routes"
 import { ThemeContext } from "./context/theme";
 import { ProjectsProvider } from "./context/projects/context";
 import { MembersProvider } from "./context/members/context";
+import { CommentsProvider } from "./context/comment/context";
 
 
 const App = () => {
@@ -14,7 +15,9 @@ const App = () => {
 
       <ProjectsProvider>
         <MembersProvider>
-          <RouterProvider router={router} />
+          <CommentsProvider>
+            <RouterProvider router={router} />
+          </CommentsProvider>
         </MembersProvider>
       </ProjectsProvider>
     </div>
