@@ -1,4 +1,4 @@
-import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import Signin from "../pages/signin"
 import Signup from "../pages/signup"
@@ -13,7 +13,6 @@ import ProjectDetails from "../pages/project_details";
 import NewTask from "../pages/tasks/NewTask";
 import TaskDetailsContainer from "../pages/tasks/TaskDetailsContainer";
 import NewComment from "../pages/comments/NewComment";
-import CommentContainer from "../pages/comments/CommentContainer";
 import CommentList from "../pages/comments/CommentList";
 
 const router = createBrowserRouter([
@@ -64,10 +63,12 @@ const router = createBrowserRouter([
                             {
                                 path: "tasks",
                                 children: [
-                                    { index: true, 
-                                        element: <Navigate to="../" replace /> },
-                                    { 
-                                        path: "new", 
+                                    {
+                                        index: true,
+                                        element: <Navigate to="../" replace />
+                                    },
+                                    {
+                                        path: "new",
                                         element: <NewTask />,
                                     },
                                     {
@@ -77,17 +78,18 @@ const router = createBrowserRouter([
                                             {
                                                 path: "comments",
                                                 children: [
-                                                    { index: true, 
-                                                        element: <CommentList/>, 
-                                                        
+                                                    {
+                                                        index: true,
+                                                        element: <CommentList />,
+
                                                     },
-                                                    { 
-                                                        path: "new", 
-                                                        element: <NewComment/>,
+                                                    {
+                                                        path: "new",
+                                                        element: <NewComment />,
                                                     },
                                                 ],
                                             }
-                                          ],
+                                        ],
                                     },
                                 ],
                             },

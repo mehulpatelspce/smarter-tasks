@@ -2,7 +2,7 @@ import { Draggable } from "react-beautiful-dnd";
 import { TaskDetails } from "../../context/task/types";
 import "./TaskCard.css";
 import { Link } from "react-router-dom";
-import React, { forwardRef, useContext } from "react";
+import React, { forwardRef } from "react";
 import { useParams } from "react-router-dom";
 import { useTasksDispatch } from "../../context/task/context";
 import { deleteTask } from "../../context/task/actions";
@@ -34,7 +34,7 @@ const Task = forwardRef<
                         </p>
                     </div>
                 </div>
-                
+
                 <button
                     className="deleteTaskButton cursor-pointer h-4 w-4 rounded-full my-5 mr-5"
                     onClick={(event) => {
@@ -58,16 +58,16 @@ const Task = forwardRef<
                     </svg>
                 </button>
             </Link>
-            </div>
-            <div ref={ref} {...props} className="m-2">
-             
+        </div>
+        <div ref={ref} {...props} className="m-2">
+
             <Link to={`tasks/${task.id}/comments`}
-            >View Comments</Link><br/> 
+            >View Comments</Link><br />
             <Link
                 to={`tasks/${task.id}/comments/new`}
             >Add Comment</Link>
         </div>
-        </div>
+    </div>
     );
 });
 

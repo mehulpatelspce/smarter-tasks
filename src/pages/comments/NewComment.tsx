@@ -1,22 +1,22 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useCommentsDispatch } from "../../context/comment/context";
-import { addComment, fetchComments } from "../../context/comment/actions";
+import { addComment } from "../../context/comment/actions";
 import { CommentDetailsPayload } from "../../context/comment/types";
 
 const NewComment = () => {
   let [isOpenNewComment, setIsOpenNewComment] = useState(true);
 
-  let {projectID,  taskID } = useParams();
+  let { projectID, taskID } = useParams();
   // let navigate = useNavigate();
-  let userID = JSON.parse(localStorage.getItem("userData")?? "").id;
+  let userID = JSON.parse(localStorage.getItem("userData") ?? "").id;
   // Use react-hook-form to create form submission handler and state.
   const {
     register,
     handleSubmit,
-    formState: {  },
+    formState: { },
   } = useForm<CommentDetailsPayload>();
 
   function closeModalNewComment() {
@@ -25,9 +25,9 @@ const NewComment = () => {
   }
 
   const commentDispatch = useCommentsDispatch();
-  
+
   const onSubmit: SubmitHandler<CommentDetailsPayload> = async (data) => {
-    
+
     data['owner'] = userID;
     // data['task_id'] = taskID
     console.log("Data Load:", data)
@@ -35,7 +35,7 @@ const NewComment = () => {
       // Invoke the actual API and create a task.
       addComment(commentDispatch, projectID ?? "", taskID ?? "", data);
       // fetchComments(commentDispatch, projectID ?? "", taskID ?? "");
-      
+
 
       closeModalNewComment();
     } catch (error) {
@@ -87,7 +87,7 @@ const NewComment = () => {
                         {...register('description', { required: true })}
                         className="w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
                       />
-                      
+
                       <button
                         type="submit"
                         // Set an id for the submit button

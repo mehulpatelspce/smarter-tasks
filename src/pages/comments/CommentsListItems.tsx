@@ -4,7 +4,6 @@ import { useCommentsDispatch, useCommentsState } from "../../context/comment/con
 import { useEffect } from "react";
 import { fetchComments } from "../../context/comment/actions";
 import { useMembersState } from "../../context/members/context";
-import { Member } from "../../context/members/reducer";
 
 export default function CommentListItems() {
     const commentDispatch = useCommentsDispatch();
@@ -12,7 +11,7 @@ export default function CommentListItems() {
     let { projectID, taskID } = useParams();
     console.log("Project ID:--", projectID)
     console.log("Task Id:--", taskID)
-    
+
 
     useEffect(() => {
         console.log("Fetch Comments ->");
@@ -45,16 +44,16 @@ export default function CommentListItems() {
         return <p className='mt-5 font-bold text-blue-700'>Add first comment</p>;
     }
 
-    const members : any = useMembersState()?.members;
+    const members: any = useMembersState()?.members;
     console.log("Members:", members);
 
 
     return (
         <>
-            {comments.map((comment: any) =>{
+            {comments.map((comment: any) => {
                 const commentMember = members.filter(
                     (member: any) => member.id === comment.owner);
-                    
+
                 return (
                     <div className='comment my-3 bg-white-200 rounded p-3'
                         key={`${comment.owner}-${comment.createdAt}`} >
@@ -63,11 +62,11 @@ export default function CommentListItems() {
                             <p>{comment.description}</p>
                         </fieldset>
                     </div>
-    
-    
+
+
                 );
 
-            } )}
+            })}
         </>
     );
 
