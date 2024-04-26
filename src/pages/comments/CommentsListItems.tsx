@@ -4,6 +4,8 @@ import { useCommentsDispatch, useCommentsState } from "../../context/comment/con
 import { useEffect } from "react";
 import { fetchComments } from "../../context/comment/actions";
 import { useMembersState } from "../../context/members/context";
+import NewComment from "./NewComment";
+import { Link } from "react-router-dom";
 
 export default function CommentListItems() {
     const commentDispatch = useCommentsDispatch();
@@ -50,6 +52,11 @@ export default function CommentListItems() {
 
     return (
         <>
+            <div className="mt-4 ">
+                <Link 
+                    to={`comments/new`}
+                >Add New Comment</Link>
+            </div>
             {comments.map((comment: any) => {
                 const commentMember = members.filter(
                     (member: any) => member.id === comment.owner);

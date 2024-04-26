@@ -8,6 +8,7 @@ import { useProjectsState } from "../../context/projects/context";
 import { TaskDetailsPayload } from "../../context/task/types";
 import CheckIcon from "@heroicons/react/24/outline/CheckIcon";
 import { useMembersState } from "../../context/members/context";
+import CommentListItems from "../comments/CommentsListItems";
 
 
 
@@ -203,7 +204,7 @@ const TaskDetails = () => {
                                             </button>
                                         </form>
                                     </div>
-                                    
+                                    <CommentListItems />
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>

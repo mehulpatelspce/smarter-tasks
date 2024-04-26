@@ -59,14 +59,14 @@ const Task = forwardRef<
                 </button>
             </Link>
         </div>
-        <div ref={ref} {...props} className="m-2">
+        {/* <div ref={ref} {...props} className="m-2">
 
             <Link to={`tasks/${task.id}/comments`}
             >View Comments</Link><br />
             <Link
                 to={`tasks/${task.id}/comments/new`}
             >Add Comment</Link>
-        </div>
+        </div> */}
     </div>
     );
 });
