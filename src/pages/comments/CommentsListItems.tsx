@@ -4,7 +4,14 @@ import { useCommentsDispatch, useCommentsState } from "../../context/comment/con
 import { useEffect } from "react";
 import { fetchComments } from "../../context/comment/actions";
 import { useMembersState } from "../../context/members/context";
-import { Link } from "react-router-dom";
+
+const formatCommentDate = (commentDate: string) => {
+    const commentDateObject : Date= new Date(commentDate);
+    const year = commentDateObject.getFullYear();
+    const month = String(commentDateObject.getMonth() + 1);
+    const day = String(commentDateObject.getDate());
+    return `${day}-${month}-${year}`;
+  };
 
 export default function CommentListItems() {
     const commentDispatch = useCommentsDispatch();
@@ -51,11 +58,12 @@ export default function CommentListItems() {
 
     return (
         <>
-            <div className="mt-4 ">
+            {/* <div className="mt-4 ">
                 <Link 
                     to={`comments/new`}
                 >Add New Comment</Link>
-            </div>
+            </div> */}
+            <b>List of Comments:</b>
             {comments.map((comment: any) => {
                 const commentMember = members.filter(
                     (member: any) => member.id === comment.owner);
@@ -64,7 +72,7 @@ export default function CommentListItems() {
                     <div className='comment my-3 bg-white-200 rounded p-3'
                         key={`${comment.owner}-${comment.createdAt}`} >
                         <fieldset className="rounded-md border-2 border-black-800 ">
-                            <legend>{`${commentMember[0].name} - ${comment.createdAt}`}</legend>
+                            <legend>{`${commentMember[0].name}: ${formatCommentDate(comment.createdAt)}`}</legend>
                             <p>{comment.description}</p>
                         </fieldset>
                     </div>
