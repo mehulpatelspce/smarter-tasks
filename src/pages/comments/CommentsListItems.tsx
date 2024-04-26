@@ -4,7 +4,6 @@ import { useCommentsDispatch, useCommentsState } from "../../context/comment/con
 import { useEffect } from "react";
 import { fetchComments } from "../../context/comment/actions";
 import { useMembersState } from "../../context/members/context";
-import NewComment from "./NewComment";
 import { Link } from "react-router-dom";
 
 export default function CommentListItems() {
