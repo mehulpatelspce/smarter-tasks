@@ -17,7 +17,7 @@ const NewTask = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { },
   } = useForm<TaskDetailsPayload>();
 
   const projectState = useProjectsState();
@@ -31,6 +31,7 @@ const NewTask = () => {
     return <>No such Project!</>;
   }
   function closeModal() {
+    
     setIsOpen(false);
     navigate("../../");
   }

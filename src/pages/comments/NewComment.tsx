@@ -1,16 +1,16 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { Fragment, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useCommentsDispatch, useCommentsState } from "../../context/comment/context";
-import { addComment } from "../../context/comment/actions";
+import { useCommentsDispatch } from "../../context/comment/context";
+import { addComment, fetchComments } from "../../context/comment/actions";
 import { CommentDetailsPayload } from "../../context/comment/types";
 
 const NewComment = () => {
   let [isOpenNewComment, setIsOpenNewComment] = useState(true);
 
   let {projectID,  taskID } = useParams();
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   let userID = JSON.parse(localStorage.getItem("userData")?? "").id;
   // Use react-hook-form to create form submission handler and state.
   const {
@@ -21,14 +21,10 @@ const NewComment = () => {
 
   function closeModalNewComment() {
     setIsOpenNewComment(false);
-    navigate("../../");
+    // navigate("../../");
   }
 
   const commentDispatch = useCommentsDispatch();
-  console.log("Comment Dispatch0:", commentDispatch);
-  const comments = useCommentsState();
-  console.log("Comments:", comments);
-
   
   const onSubmit: SubmitHandler<CommentDetailsPayload> = async (data) => {
     
@@ -38,7 +34,9 @@ const NewComment = () => {
     try {
       // Invoke the actual API and create a task.
       addComment(commentDispatch, projectID ?? "", taskID ?? "", data);
-      console.log("Added Comments:", comments);
+      // fetchComments(commentDispatch, projectID ?? "", taskID ?? "");
+      
+
       closeModalNewComment();
     } catch (error) {
       console.error("Operation failed:", error);
@@ -84,7 +82,7 @@ const NewComment = () => {
                         required
                         placeholder="Enter comment"
                         autoFocus
-                        id="description"
+                        id="commentBox"
                         // Register the comment field
                         {...register('description', { required: true })}
                         className="w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"

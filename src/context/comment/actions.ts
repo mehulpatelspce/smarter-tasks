@@ -69,7 +69,10 @@ export const addComment = async (dispatch: any, projectID: string, taskID: strin
 
         dispatch({ type: CommentListAvailableAction.ADD_COMMENT_SUCCESS, payload: data});
         
-        fetchComments(dispatch, projectID, taskID);
+        // fetchComments(dispatch, projectID, taskID);
+
+       
+
     } catch (error) {
         console.error("Error: Filed to create comment:", error);
         dispatch({

@@ -3,6 +3,8 @@ import { useCommentsDispatch, useCommentsState } from "../../context/comment/con
 
 import { useEffect } from "react";
 import { fetchComments } from "../../context/comment/actions";
+import { useMembersState } from "../../context/members/context";
+import { Member } from "../../context/members/reducer";
 
 export default function CommentListItems() {
     const commentDispatch = useCommentsDispatch();
@@ -43,61 +45,32 @@ export default function CommentListItems() {
         return <p className='mt-5 font-bold text-blue-700'>Add first comment</p>;
     }
 
+    const members : any = useMembersState()?.members;
+    console.log("Members:", members);
+
+
     return (
         <>
-            {comments.map((comment: any) => (
-                <div className='comment my-3 bg-slate-400 rounded p-3'
-                    key={`${comment.owner} - ${comment.createdAt}`} >
-                    <fieldset className="border">
-                        <legend>{`${comment.owner} - ${comment.createdAt}`}</legend>
-                        <p>{comment.description}</p>
-                    </fieldset>
-                </div>
+            {comments.map((comment: any) =>{
+                const commentMember = members.filter(
+                    (member: any) => member.id === comment.owner);
+                    
+                return (
+                    <div className='comment my-3 bg-white-200 rounded p-3'
+                        key={`${comment.owner}-${comment.createdAt}`} >
+                        <fieldset className="rounded-md border-2 border-black-800 ">
+                            <legend>{`${commentMember[0].name} - ${comment.createdAt}`}</legend>
+                            <p>{comment.description}</p>
+                        </fieldset>
+                    </div>
+    
+    
+                );
 
-
-            ))}
+            } )}
         </>
     );
 
-
-    // return (
-    //     <>
-    //         {comments.map((comment: any) => (
-    //             <div key={comment.id} className='comment my-3 bg-slate-400 rounded p-3 block p-6 border border-gray-200 shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700'                               >
-    //                 {/* <h5 className="mb-2 text-xl font-medium tracking-tight text-gray-900 dark:text-white">
-    //                     {comment.description}
-    //                 </h5> */}
-    //                 <div className='flex justify-between'>
-    // //                         <h2 className='font-semibold'>{`${comment.owner}`}</h2>
-    // //                     </div>
-    // //                     <p>{comment.description}</p>
-    //             </div>
-
-
-
-    //         ))}
-    //     </>
-    // );
-
-    // return (
-    //     <div className='mt-3'>
-    //         <h2 className='font-bold'>Task Comments</h2>
-
-    //         {selectedTaskComments.map((comment: any) => {
-    //             return (
-    //                 <div className='comment my-3 bg-slate-400 rounded p-3'
-    //                     key={`${comment.owner} - ${comment.createdAt}`} >
-    //                     <fieldset className="border">
-    //                         <legend>{`${comment.owner} - ${comment.createdAt}`}</legend>
-
-    //                         <p>{comment.description}</p>
-    //                     </fieldset>
-
-    //                 </div>
-    //             )
-    //         })}
-    //     </div>
-    // );
 
 
 }

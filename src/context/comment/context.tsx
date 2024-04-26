@@ -12,7 +12,6 @@ const CommentsDispatchContext = createContext<CommentsDispatch | undefined>(unde
 export const CommentsProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
     {
       const [state, dispatch] = useReducer(comment_reducer, initialState);
-      console.log("Comment Dispatch2:", dispatch);
       return (
         <CommentsStateContext.Provider value={state}>
           <CommentsDispatchContext.Provider value={dispatch}>
